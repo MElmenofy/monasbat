@@ -5,7 +5,8 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">Order Details</h5>
+                            <h5 class="font-weight-bold">{{ __('Order Details') }}</h5>
+                                <a href="{{ route('get-orders-admin') }}" class="float-right btn btn-sm btn-primary"><i class="fa fa-angle-double-left"></i> {{ __('messages.back') }}</a>
                         </div>
                     </div>
                 </div>
@@ -26,40 +27,27 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th class="py-1">{{ __('Order image ') }}</th>
+                                        <th class="py-1">{{ __('Order image') }}</th>
                                         <th class="py-1">{{__('Order Name')}}</th>
                                         <th class="py-1">{{__('Quantity')}}</th>
-                                        <th class="py-1">Address</th>
-                                        <th class="py-1">Product Price</th>
+                                        <th class="py-1">{{__('Price')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach(json_decode($order->product_name) as $p)
                                         <tr>
-                                            <td class="py-1">
-                                                <img src="{{ asset('uploads/products/').'/'.$order->product_image }}" alt="{{ $order->product_name }}" width="30%">
-                                            </td>
-                                            <td class="py-1">
-                                                <p class="card-text font-weight-bold">{{$order->product_name}}</p>
-                                            </td>
-                                            <td class="py-1">
-                                                <p class="card-text font-weight-bold">{{$order->quantity}}</p>
-                                            </td>
-                                            <td class="py-1">
-                                                @if(!empty($order->address))
-                                                    <p class="card-text font-weight-bold">{{ $order->address }}</p>
-                                                @else
-                                                    <p class="card-text font-weight-bold">{{ __('Pickup') }}</p>
-                                                @endif
-                                            </td>
-
-                                            <td class="py-1">
-                                                @if (!empty($order->product_price))
-                                                    <span class="font-weight-bold">{{ $order->product_price }}</span>
+                                                <td class="py-1">
+                                                    <img src="{{ asset('uploads/products/').'/'.$p->image }}" alt="{{ $p->name }}" width="30%">
+                                                </td>
+                                                <td class="py-1"> {{ $p->name }}</td>
+                                                <td class="py-1"> {{ $p->quantity }}</td>
+                                                @if (!empty($p->price))
+                                                <td class="py-1"> {{ $p->price }}</td>
                                                 @else
                                                     <span class="font-weight-bold">-</span>
                                                 @endif
-                                            </td>
                                         </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -82,20 +70,31 @@
                                                     <span class="font-weight-bold">{{ __('Address') }}:</span> <span class="ml-75">{{ $order->address }}</span>
                                                 </p>
                                             @endif
+                                            @if(!empty($order->shipping_name))
+                                                <p class="card-text mb-0">
+                                                    <span class="font-weight-bold">{{ __('Shipping') }}:</span> <span class="ml-75">{{ $order->shipping_name }}</span>
+                                                </p>
+                                            @endif
                                         </div>
                                         <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
                                             <div class="invoice-total-wrapper">
-{{--                                                @if(!empty($order->coupon_id))--}}
-{{--                                                    <div class="invoice-total-item">--}}
-{{--                                                        <p class="invoice-total-title">Discount:</p>--}}
-{{--                                                        <p class="invoice-total-amount"> {{$order->discount}}</p>--}}
-{{--                                                    </div>--}}
-{{--                                                @endif--}}
-
+                                                @if(!empty($order->coupon_id))
+                                                    <div class="invoice-total-item">
+                                                        <p class="invoice-total-title">{{ __('Discount') }}:</p>
+                                                        <p class="invoice-total-amount"> {{$order->discount}}</p>
+                                                    </div>
+                                                @endif
+                                                <hr class="my-50" />
+                                                @if(!empty($order->shipping_cost))
+                                                    <div class="invoice-total-item">
+                                                        <p class="invoice-total-title">{{ __('Shipping Cost') }}:</p>
+                                                        <p class="invoice-total-amount"> {{$order->shipping_cost}}</p>
+                                                    </div>
+                                                @endif
                                                 <hr class="my-50" />
                                                 <div class="invoice-total-item">
                                                     <p class="invoice-total-title">{{ __("Total") }}:</p>
-                                                    <p class="invoice-total-amount">{{ $order->product_price }}</p>
+                                                    <p class="invoice-total-amount">{{ $order->all_cost_after_discount_and_shipping }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +104,11 @@
                                 <hr class="invoice-spacing" />
                             </div>
                     </div>
+                    </div>
                     <!-- /Invoice -->
 
-
+                </div>
+            </section>
+        </div>
+    </div>
 </x-master-layout>

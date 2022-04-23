@@ -4,6 +4,8 @@ use App\Http\Controllers\CouponProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\TaxProductController;
 use App\Models\Cart;
 use App\Models\Service;
 use App\Models\User;
@@ -61,6 +63,8 @@ Route::group(['middleware' => ['auth', 'verified']], function()
 
 
     // orders
+    Route::get('get-orders-admin',[OrderController::class,'getOrdersAdmin'])->name('get-orders-admin');
+    Route::get('get-order-admin/{id}',[OrderController::class,'getOrderAdmin'])->name('get-order-admin');
     Route::get('get-orders/{id}',[OrderController::class,'getOrders'])->name('get-orders');
     Route::get('get-order/{id}',[OrderController::class,'getOrder'])->name('get-order');
     Route::put('accept_order/{id}',[OrderController::class,'accept_order'])->name('accept_order');
@@ -88,13 +92,28 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::get('changeStatus', [ HomeController::class, 'changeStatus'])->name('changeStatus');
 
 	// product categories && products
-//    Route::resource('product_categories', ProductCategoryController::class);
     Route::resource('products', ProductController::class);
 
+    // SHIPPING
+    Route::resource('shippings', ShippingController::class);
+
+    // TAX PRODUCT
+    Route::resource('tax_products', TaxProductController::class);
 
     Route::get('test', function (){
-        $cart = Cart::with('product', 'user')->get();
-        return $cart;
+        $cart = \App\Models\Order::find(3);
+        return $pr = json_decode($cart->product_name);
+
+        foreach ($pr as $p){
+            echo $p->product_id;
+        }
+//        $data = [];
+//        foreach ($cart as $item) {
+//            $name = $item->name;
+//            $data[] = $name;
+//        }
+////        return $data;
+//        return json_encode($data, true);
     });
 
     // product categories && products

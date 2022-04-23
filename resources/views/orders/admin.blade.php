@@ -25,30 +25,44 @@
                                     <th scope="col">{{ __('ID') }}</th>
                                     <th scope="col">Product Name</th>
                                     <th class="table-web" scope="col">Order Date</th>
-                                    <th class="table-web" scope="col">{{ __('Number of orders') }}</th>
-                                    <th class="table-web" scope="col">{{ __('Price') }}</th>
+                                    <th class="table-web" scope="col">{{ __('Quantity') }}</th>
+                                    <th class="table-web" scope="col">{{ __('Total Amount') }}</th>
+                                    <th class="table-web" scope="col">{{ __('Discount') }}</th>
                                     <th scope="col">{{ __('Aria') }}</th>
                                     <th scope="col">{{ __('Last status') }}</th>
-                                    <th scope="col">{{ __('Actions') }}</th>
+                                    <th scope="col">{{ __('Shipping Cost') }}</th>
+                                    <th scope="col">{{ __('Shipping Place') }}</th>
+{{--                                    <th scope="col">{{ __('Actions') }}</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($orders as $order)
                                     <tr>
                                         <td class="table-web">
-                                            <a class="btn badge badge-success badge-pill" href="{{ route('get-order',$order->id )}}">#{{ $order->id }}</a>
+                                            <a class="btn badge badge-success badge-pill" href="{{ route('get-order-admin',$order->id )}}">#{{ $order->id }}</a>
                                         </td>
                                         <td class="table-web">
-                                            {{ $order->product_name }}
+                                            @foreach(json_decode($order->product_name) as $p)
+                                            {{ $p->name }} -<br>
+                                            @endforeach
                                         </td>
                                         <td class="table-web" dir="ltr">
                                             {{ $order->created_at }}
                                         </td>
                                         <td class="table-web">
-                                            {{ $order->quantity }}
+                                            @foreach(json_decode($order->product_name) as $p)
+                                                {{ $order->quantity }} -<br>
+                                            @endforeach
                                         </td>
                                         <td class="table-web">
-                                            {{ $order->product_price }}
+                                            {{ $order->all_cost_after_discount_and_shipping }}
+                                        </td>
+                                        <td class="table-web">
+                                            @if($order->discount != null)
+                                            {{ $order->discount }}
+                                            @else
+                                            -
+                                            @endif
                                         </td>
                                         <td class="table-web">
                                             {{ $order->address }}
@@ -68,35 +82,41 @@
                                                 <span>-</span>
                                             @endif
                                         </td>
-                                        <td>
-                                            @if($order->status == 0)
-                                                <div class="d-flex justify-content-between">
-                                                <form method="post" action="{{ route('accept_order',$order->id) }}">
-                                                    @csrf
-                                                    {{ method_field('PUT') }}
-                                                    <button type="submit" class="btn btn-primary btn-sm order-action" id="type-success">قبول</button>
-                                                </form>
-                                                <form method="post" action="{{ route('reject_order',$order->id) }}">
-                                                    @csrf
-                                                    {{ method_field('PUT') }}
-                                                    <button type="submit" class="btn btn-danger btn-sm order-action float-right" id="type-success">رفض</button>
-                                                </form>
-                                                </div>
-                                            @elseif($order->status == 1)
-                                                <form method="post" class="" action="{{ route('done_order',$order->id) }}">
-                                                    @csrf
-                                                    {{ method_field('PUT') }}
-                                                    <button type="submit" class="btn btn-success btn-sm order-action d-inline-block float-right" id="type-success">اتمام</button>
-                                                </form>
+                                        <td class="table-web">
+                                            {{ $order->shipping_cost }}
+                                        </td>
+                                       <td class="table-web">
+                                            {{ $order->shipping_name }}
+                                        </td>
+{{--                                        <td>--}}
+{{--                                            @if($order->status == 0)--}}
+{{--                                                <div class="d-flex justify-content-between">--}}
+{{--                                                <form method="post" action="{{ route('accept_order',$order->id) }}">--}}
+{{--                                                    @csrf--}}
+{{--                                                    {{ method_field('PUT') }}--}}
+{{--                                                    <button type="submit" class="btn btn-primary btn-sm order-action" id="type-success">قبول</button>--}}
+{{--                                                </form>--}}
+{{--                                                <form method="post" action="{{ route('reject_order',$order->id) }}">--}}
+{{--                                                    @csrf--}}
+{{--                                                    {{ method_field('PUT') }}--}}
+{{--                                                    <button type="submit" class="btn btn-danger btn-sm order-action float-right" id="type-success">رفض</button>--}}
+{{--                                                </form>--}}
+{{--                                                </div>--}}
+{{--                                            @elseif($order->status == 1)--}}
+{{--                                                <form method="post" class="" action="{{ route('done_order',$order->id) }}">--}}
+{{--                                                    @csrf--}}
+{{--                                                    {{ method_field('PUT') }}--}}
+{{--                                                    <button type="submit" class="btn btn-success btn-sm order-action d-inline-block float-right" id="type-success">اتمام</button>--}}
+{{--                                                </form>--}}
 {{--                                                <form method="post" action="{{ route('reject_order',$order->id) }}">--}}
 {{--                                                    @csrf--}}
 {{--                                                    {{ method_field('PUT') }}--}}
 {{--                                                    <button type="submit" class="btn btn-danger btn-sm order-action d-inline-block float-left" id="type-success">رفض</button>--}}
 {{--                                                </form>--}}
-                                            @elseif(!$order->status == 0 || !$order->status == 1)
-                                                <small>لا توجد إجراءات لك الآن!</small>
-                                            @endif
-                                        </td>
+{{--                                            @elseif(!$order->status == 0 || !$order->status == 1)--}}
+{{--                                                <small>لا توجد إجراءات لك الآن!</small>--}}
+{{--                                            @endif--}}
+{{--                                        </td>--}}
 
                                     </tr>
                                 @endforeach
@@ -113,5 +133,9 @@
                             </table>
                     @endif
         <!-- orders -->
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 </x-master-layout>

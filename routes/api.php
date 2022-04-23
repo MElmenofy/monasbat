@@ -21,47 +21,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 */
-
-// products
-Route::get('products',[API\ProductController::class,'index']);
-Route::post('products',[API\ProductController::class,'storeProduct']);
-Route::post('product-update/{id}',[API\ProductController::class,'updateProduct']);
-Route::post('product-delete/{id}', [ API\ProductController::class, 'destroy'] );
-// /products
-
-// coupon - products
 Route::get('all-coupons',[API\CouponProductController::class,'getAll']);
-Route::get('product-coupon/{id}',[API\CouponProductController::class,'index']);
-Route::post('product-coupon',[API\CouponProductController::class,'storeCoupon']);
-Route::post('product-coupon-update/{id}',[API\CouponProductController::class,'update']);
-Route::post('product-coupon-delete/{id}', [ API\CouponProductController::class, 'destroy'] );
-// /coupon - products
-
-//  cart
-Route::post('carts',[API\CartController::class,'store']);
-Route::get('getCart/{id}',[API\CartController::class,'getCart']);
-Route::post('cart-delete/{id}', [ API\CartController::class, 'destroy'] );
-//  /cart
-
-// orders
-Route::post('create-order',[API\OrderController::class,'createOrder']);
-Route::get('get-orders/{id}',[API\OrderController::class,'getOrders']);
-Route::get('get-user-orders/{id}',[API\OrderController::class,'getUserOrders']);
-//  accepted
-Route::get('accepted-orders/{id}',[API\OrderController::class,'getAcceptedOrders']);
-
-Route::post('accept_order/{id}',[API\OrderController::class,'accept_order']);
-Route::post('reject_order/{id}',[API\OrderController::class,'reject_order']);
-Route::post('cancel_order/{id}',[API\OrderController::class,'cancel_order']);
-Route::post('done_order/{id}',[API\OrderController::class,'done_order']);
-// orders
-
-// favourite
-Route::post('save-favourite-product',[ API\UserFavouriteProductController::class, 'saveFavouriteProduct' ]);
-Route::post('delete-favourite-product',[ API\UserFavouriteProductController::class, 'deleteFavouriteProduct' ]);
-Route::get('user-favourite-product/{id}',[ API\UserFavouriteProductController::class, 'getUserFavouriteProduct' ]);
-Route::get('user-f-product/{id}',[ API\UserFavouriteProductController::class, 'getFavouriteProduct' ]);
-// /favourite
+//    SHIPPING
+Route::get('getShipping',[ API\ShippingController::class, 'getShipping' ]);
+//    /SHIPPING
 
 Route::get('category-list',[API\CategoryController::class,'getCategoryList']);
 Route::get('service-list',[API\ServiceController::class,'getServiceList']);
@@ -92,6 +55,49 @@ Route::get('user-list',[API\User\UserController::class, 'userList']);
 Route::get('booking-status', [ API\BookingController::class, 'bookingStatus' ] );
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    // products
+    Route::get('products',[API\ProductController::class,'index']);
+    Route::post('products',[API\ProductController::class,'storeProduct']);
+    Route::post('product-update/{id}',[API\ProductController::class,'updateProduct']);
+    Route::post('product-delete/{id}', [ API\ProductController::class, 'destroy'] );
+// /products
+
+// coupon - products
+    Route::get('product-coupon/{id}',[API\CouponProductController::class,'index']);
+    Route::post('product-coupon',[API\CouponProductController::class,'storeCoupon']);
+    Route::post('product-coupon-update/{id}',[API\CouponProductController::class,'update']);
+    Route::post('product-coupon-delete/{id}', [ API\CouponProductController::class, 'destroy'] );
+// /coupon - products
+
+//  cart
+    Route::post('carts',[API\CartController::class,'store']);
+    Route::post('updateQ',[API\CartController::class,'updateQ']);
+    Route::get('getCart/{id}',[API\CartController::class,'getCart']);
+    Route::post('cart-delete/{id}', [ API\CartController::class, 'destroy'] );
+//  /cart
+
+// orders
+    Route::post('create-order',[API\OrderController::class,'createOrder']);
+    Route::get('get-orders/{id}',[API\OrderController::class,'getOrders']);
+    Route::get('get-user-orders/{id}',[API\OrderController::class,'getUserOrders']);
+//  accepted
+    Route::get('accepted-orders/{id}',[API\OrderController::class,'getAcceptedOrders']);
+    Route::post('accept_order/{id}',[API\OrderController::class,'accept_order']);
+    Route::post('reject_order',[API\OrderController::class,'reject_order']);
+    Route::post('cancel_order',[API\OrderController::class,'cancel_order']);
+    Route::post('done_order/{id}',[API\OrderController::class,'done_order']);
+// orders
+
+// favourite
+    Route::post('save-favourite-product',[ API\UserFavouriteProductController::class, 'saveFavouriteProduct' ]);
+    Route::post('delete-favourite-product',[ API\UserFavouriteProductController::class, 'deleteFavouriteProduct' ]);
+    Route::get('user-favourite-product/{id}',[ API\UserFavouriteProductController::class, 'getUserFavouriteProduct' ]);
+    Route::get('user-f-product/{id}',[ API\UserFavouriteProductController::class, 'getFavouriteProduct' ]);
+// /favourite
+
+
+
     Route::post('service-save', [ App\Http\Controllers\ServiceController::class, 'store' ] );
     Route::post('service-delete/{id}', [ App\Http\Controllers\ServiceController::class, 'destroy' ] );
     Route::post('booking-save', [ App\Http\Controllers\BookingController::class, 'store' ] );

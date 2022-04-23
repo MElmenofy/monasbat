@@ -17,10 +17,15 @@ class CreateCouponProductsTable extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->double('price');
-            $table->unsignedBigInteger('provider_id')->references('id')->on('users')->nullable();
+            $table->string('category_id')->nullable();
+            $table->string('product_id')->nullable();
+            $table->string('type_coupon')->default(0)->comment('0 - order, 1 - category, 2 - product');
             $table->string('type')->default(1)->comment('0 - Fixed, 1 - Percentage');
-            $table->integer('used_count');
+            $table->unsignedInteger('used_count');
             $table->timestamps();
+
+//            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+//            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

@@ -13,4 +13,21 @@ class CouponProduct extends Model
     public function provider(){
         return $this->belongsTo(User::class);
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    public function getCategoryIdAttribute($value)
+    {
+        return explode(',',$value);
+    }
+    public function getProductIdAttribute($value)
+    {
+        return explode(',',$value);
+    }
 }

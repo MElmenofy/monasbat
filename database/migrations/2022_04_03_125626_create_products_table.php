@@ -18,8 +18,13 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->double('price');
+            $table->double('tax')->nullable();
             $table->string('provider_id');
-            $table->string('image');
+            $table->string('image_one')->nullable();
+            $table->string('image_two')->nullable();
+            $table->string('image_three')->nullable();
+            $table->string('image_four')->nullable();
+            $table->string('image_five')->nullable();
             $table->foreignId('service_id')->constrained()->cascadeOnDelete();
             $table->string('category_id')->nullable();
             $table->boolean('status')->default(true);

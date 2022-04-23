@@ -6,7 +6,6 @@
         //Admin Dashboard
         $menu->add('<span>'.__('messages.dashboard').'</span>', ['route' => 'home'])
             ->prepend('<i class="ri-dashboard-line"></i>')
-
             ->link->attr(['class' => '']);
 
 
@@ -19,18 +18,46 @@
             ->link->attr(["class" => ""]);
         }
         // /product categories
+	// SHIPPING
+	if (auth()->user()->user_type == 'admin'){
+        $menu->add('<span>Shipping</span>', ['class' => '', 'route' => ['shippings.index']])
+            ->prepend('<i class="ri-shopping-basket-2-line"></i>')
+            ->nickname('shipping')
+            ->data('permission', 'category list')
+            ->link->attr(["class" => ""]);
+        }
+        // /SHIPPING
+	// TAX PRODUCTS
+	if (auth()->user()->user_type == 'admin'){
+        $menu->add('<span>Tax Products</span>', ['class' => '', 'route' => ['tax_products.index']])
+            ->prepend('<i class="ri-shopping-basket-2-line"></i>')
+            ->nickname('tax products')
+            ->data('permission', 'category list')
+            ->link->attr(["class" => ""]);
+        }
+        // /TAX PRODUCTS
 	// Orders
 	if (auth()->user()->user_type == 'provider'){
         $menu->add('<span>Orders</span>', ['class' => '', 'route' => ['get-orders', auth()->user()->id]])
             ->prepend('<i class="ri-shopping-basket-2-line"></i>')
             ->nickname('products')
-            ->data('permission', 'category list')
+            ->data('Orders', 'category list')
             ->link->attr(["class" => ""]);
         }
         // /Orders
 
+	// Orders -Admin
+	if (auth()->user()->user_type == 'admin'){
+        $menu->add('<span>Orders</span>', ['class' => '', 'route' => ['get-orders-admin']])
+            ->prepend('<i class="ri-shopping-basket-2-line"></i>')
+            ->nickname('Orders')
+            ->data('permission', 'category list')
+            ->link->attr(["class" => ""]);
+        }
+        // /Orders -Admin
+
 	// product-coupon
-	if (auth()->user()->user_type == 'provider'){
+	if (auth()->user()->user_type == 'admin'){
         $menu->add('<span>Product Coupons</span>', ['class' => '', 'route' => ['product_coupons']])
             ->prepend('<i class="ri-shopping-basket-2-line"></i>')
             ->nickname('Coupons')

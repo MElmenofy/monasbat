@@ -7,8 +7,18 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function getOrdersAdmin(){
+        $orders = Order::whereNotNull('is_admin')->paginate(10);
+        return view('orders.admin', compact('orders'));
+    }
+
+    public function getOrderAdmin($id){
+        $order = Order::findOrFail($id);
+        return view('orders.admin-details', compact('order'));
+    }
+
     public function getOrders(){
-        $orders = Order::where('provider_id', auth()->user()->id)->get();
+        $orders = Order::where('provider_id', auth()->user()->id)->whereNull('is_admin')->paginate(10);
         return view('orders.index', compact('orders'));
     }
 

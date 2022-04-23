@@ -72,12 +72,12 @@
 
 
                 <div class="row pt-4">
-                    <div class="col-12">
+                    <div class="col-2">
                         <label for="images">Images</label>
                         <br>
                         <div class="file-loading">
-{{--                            <input type="file" name="image[]" id="product-images" class="file-input-overview" multiple="multiple">--}}
-                            <input type="file" name="image" id="product-images" class="file-input-overview" multiple="multiple">
+                            <input type="file" name="image[]" id="product-images" class="file-input-overview" multiple="multiple">
+                            <small>Max 5 images</small>
                             @error('image')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                     </div>

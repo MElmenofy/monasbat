@@ -30,13 +30,13 @@ class CartController extends Controller
             'is_coupon' => $product->is_coupon,
             'description' => $product->description,
             'price' => $product->price,
-            'image' => $product->image,
+            'image' => $product->image_one,
             'service_id' => $product->service_id,
             'category_id' => $product->category_id,
         ]);
 
         if ($cart){
-            return $this->apiData($cart, 200, 'Cart');
+            return $this->apiData($cart,  'تم اضافة المنتج بنجاح', 200);
         }
     }
 
@@ -44,6 +44,16 @@ class CartController extends Controller
         $cart = Cart::where('user_id', $id)->get();
         if ($cart){
             return $this->apiData($cart, 200, 'Cart');
+        }
+    }
+
+
+    public function updateQ(Request $request){
+        $cart = Cart::findOrFail($request->id);
+        $cart->quantity = $request->quantity;
+        $cart->update();
+        if ($cart){
+            return $this->apiData($cart, 200, 'Cart Quantity Updated');
         }
     }
 

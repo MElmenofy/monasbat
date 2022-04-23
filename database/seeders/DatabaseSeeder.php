@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             BookingStatusesTableSeeder::class,
             SettingsTableSeeder::class,
             ProviderTypesTableSeeder::class,
+            ShippingSeeder::class,
         ]);
     }
 }
