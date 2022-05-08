@@ -5,7 +5,7 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">{{ __('Order Details') }}</h5>
+                            <h5 class="font-weight-bold">{{ __('messages.order_details') }}</h5>
                                 <a href="{{ route('get-orders-admin') }}" class="float-right btn btn-sm btn-primary"><i class="fa fa-angle-double-left"></i> {{ __('messages.back') }}</a>
                         </div>
                     </div>
@@ -27,10 +27,10 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th class="py-1">{{ __('Order image') }}</th>
-                                        <th class="py-1">{{__('Order Name')}}</th>
-                                        <th class="py-1">{{__('Quantity')}}</th>
-                                        <th class="py-1">{{__('Price')}}</th>
+                                        <th class="py-1">{{ __('messages.order_image ') }}</th>
+                                        <th class="py-1">{{__('messages.order_name')}}</th>
+                                        <th class="py-1">{{__('messages.quantity')}}</th>
+                                        <th class="py-1">{{__('messages.price')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -57,22 +57,22 @@
                                         <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
                                             @if(!empty($order->user_id))
                                                 <p class="card-text mb-0">
-                                                    <span class="font-weight-bold">{{ __('Name') }}:</span> <span class="ml-75">{{ $order->user->first_name. ' '.$order->user->last_name  }}</span>
+                                                    <span class="font-weight-bold">{{ __('messages.name') }}:</span> <span class="ml-75">{{ $order->user->first_name. ' '.$order->user->last_name  }}</span>
                                                 </p>
                                             @endif
                                             @if(!empty($order->user_id>2))
                                                 <p class="card-text mb-0">
-                                                    <span class="font-weight-bold">{{ __('Phone') }}:</span> <span class="ml-75">{{ $order->user->contact_number }}</span>
+                                                    <span class="font-weight-bold">{{ __('messages.phone') }}:</span> <span class="ml-75">{{ $order->user->contact_number }}</span>
                                                 </p>
                                             @endif
                                             @if(!empty($order->address))
                                                 <p class="card-text mb-0">
-                                                    <span class="font-weight-bold">{{ __('Address') }}:</span> <span class="ml-75">{{ $order->address }}</span>
+                                                    <span class="font-weight-bold">{{ __('messages.address') }}:</span> <span class="ml-75">{{ $order->address }}</span>
                                                 </p>
                                             @endif
                                             @if(!empty($order->shipping_name))
                                                 <p class="card-text mb-0">
-                                                    <span class="font-weight-bold">{{ __('Shipping') }}:</span> <span class="ml-75">{{ $order->shipping_name }}</span>
+                                                    <span class="font-weight-bold">{{ __('messages.shipping') }}:</span> <span class="ml-75">{{ $order->shipping_name }}</span>
                                                 </p>
                                             @endif
                                         </div>
@@ -80,20 +80,20 @@
                                             <div class="invoice-total-wrapper">
                                                 @if(!empty($order->coupon_id))
                                                     <div class="invoice-total-item">
-                                                        <p class="invoice-total-title">{{ __('Discount') }}:</p>
+                                                        <p class="invoice-total-title">{{ __('messages.discount') }}:</p>
                                                         <p class="invoice-total-amount"> {{$order->discount}}</p>
                                                     </div>
                                                 @endif
                                                 <hr class="my-50" />
                                                 @if(!empty($order->shipping_cost))
                                                     <div class="invoice-total-item">
-                                                        <p class="invoice-total-title">{{ __('Shipping Cost') }}:</p>
+                                                        <p class="invoice-total-title">{{ __('messages.shipping_cost') }}:</p>
                                                         <p class="invoice-total-amount"> {{$order->shipping_cost}}</p>
                                                     </div>
                                                 @endif
                                                 <hr class="my-50" />
                                                 <div class="invoice-total-item">
-                                                    <p class="invoice-total-title">{{ __("Total") }}:</p>
+                                                    <p class="invoice-total-title">{{ __("messages.total") }}:</p>
                                                     <p class="invoice-total-amount">{{ $order->all_cost_after_discount_and_shipping }}</p>
                                                 </div>
                                             </div>

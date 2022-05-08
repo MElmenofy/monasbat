@@ -5,9 +5,9 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">Shipping</h5>
+                            <h5 class="font-weight-bold">{{ __('messages.shipping') }}</h5>
 {{--                            @if($auth_user->can('category add'))--}}
-                            <a href="{{ route('shippings.create') }}" class="float-right mr-1 btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>Shipping</a>
+                            <a href="{{ route('shippings.create') }}" class="float-right mr-1 btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>{{ __('messages.shipping') }}</a>
 {{--                            @endif--}}
                         </div>
 
@@ -22,10 +22,10 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>City</th>
-                    <th>Status</th>
-                    <th>Price</th>
-                    <th class="text-center" style="width: 30px;">Actions</th>
+                    <th>{{ __('messages.city') }}</th>
+                    <th>{{ __('messages.status') }}</th>
+                    <th>{{ __('messages.price') }}</th>
+                    <th class="text-center" style="width: 30px;">{{ __('messages.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>

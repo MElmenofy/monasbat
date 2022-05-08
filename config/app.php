@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => env('DEFAULT_LANGUAGE','en'),
+    'locale' => env('DEFAULT_LANGUAGE','ar'),
 
     /*
     |--------------------------------------------------------------------------

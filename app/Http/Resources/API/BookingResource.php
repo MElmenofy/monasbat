@@ -27,6 +27,7 @@ class BookingResource extends JsonResource
             'status'                => $this->status,
             'status_label'          => BookingStatus::bookingStatus($this->status),
             'description'           => $this->description,
+            'image'                 => $this->image,
             'provider_name'         => optional($this->provider)->display_name,
             'customer_name'         => optional($this->customer)->display_name,
             'service_name'          => optional($this->service)->name,

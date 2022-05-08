@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index(CategoryDataTable $dataTable)
     {
-        $pageTitle = trans('messages.list_form_title',['form' => trans('messages.category')] );
+        $pageTitle = trans('messages.category');
         $auth_user = authSession();
         $assets = ['datatable'];
         return $dataTable->render('category.index', compact('pageTitle','auth_user','assets'));

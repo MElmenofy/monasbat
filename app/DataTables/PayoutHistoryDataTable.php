@@ -62,10 +62,10 @@ class PayoutHistoryDataTable extends DataTable
                 ->orderable(false),
             Column::make('provider_id')
                     ->title(__('messages.provider')),
-            Column::make('method'),
+            Column::make('method') ->title(__('messages.method')),
             Column::make('description')
                 ->title(__('messages.description')),
-            Column::make('amount')
+            Column::make('amount')->title(__('messages.amount'))
         ];
     }
 

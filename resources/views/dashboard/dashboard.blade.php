@@ -12,7 +12,7 @@
                                         <div class="d-flex flex-wrap justify-content-start align-items-center">
                                             <h5 class="mb-2 text-primary font-weight-bold dashboard-card-value">{{ !empty($data['dashboard']['count_total_booking']) ? $data['dashboard']['count_total_booking']: 0 }} </h5>
                                         </div>
-                                        <p class="mb-0 text-secondary">{{ __('messages.total_name', ['name' => __('messages.booking')]) }}</p>
+                                        <p class="mb-0 text-secondary">{{ __('messages.total'). __('messages.booking') }}</p>
                                     </div>
                                     <div class="col-auto d-flex flex-column">
                                         <div class="iq-card-icon icon-shape bg-soft-primary text-primary rounded-circle shadow">
@@ -33,7 +33,7 @@
                                         <div class="d-flex flex-wrap justify-content-start align-items-center">
                                             <h5 class="mb-2 text-primary font-weight-bold dashboard-card-value">{{ !empty($data['dashboard']['count_total_service']) ? $data['dashboard']['count_total_service'] : 0 }}</h5>
                                         </div>
-                                        <p class="mb-0 text-secondary">{{ __('messages.total_name', ['name' => __('messages.service')]) }}</p>
+                                        <p class="mb-0 text-secondary">{{ __('messages.total'). __('messages.service') }}</p>
                                     </div>
                                     <div class="col-auto d-flex flex-column">
                                         <div class="iq-card-icon icon-shape bg-soft-warning text-white rounded-circle phshadow">
@@ -55,7 +55,7 @@
                                             <h5 class="mb-2 text-primary font-weight-bold dashboard-card-value">{{ !empty($data['dashboard']['count_total_provider']) ? $data['dashboard']['count_total_provider'] : 0 }}</h5>
                                             <p class="mb-0 ml-3 text-danger font-weight-bold"></p>
                                         </div>
-                                        <p class="mb-0 text-secondary">{{ __('messages.total_name', ['name' => __('messages.provider')]) }}</p>
+                                        <p class="mb-0 text-secondary">{{ __('messages.total'). __('messages.provider') }}</p>
                                     </div>
                                     <div class="col-auto d-flex flex-column">
                                         <div class="iq-card-icon icon-shape bg-success text-white rounded-circle shadow">
@@ -77,7 +77,7 @@
                                             <h5 class="mb-2 text-primary font-weight-bold dashboard-card-value">{{ getPriceFormat(round($data['total_revenue'])) }}</h5>
                                             <p class="mb-0 ml-3 text-danger font-weight-bold"></p>
                                         </div>
-                                        <p class="mb-0 text-secondary">{{ __('messages.total_name', ['name' => __('messages.revenue')]) }}</p>
+                                        <p class="mb-0 text-secondary">{{ __('messages.total'). __('messages.revenue') }}</p>
                                     </div>
                                     <div class="col-auto d-flex flex-column">
                                         <div class="iq-card-icon icon-shape bg-success text-white rounded-circle shadow">
@@ -103,7 +103,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card card-block card-height">
-                    <div class="d-flex justify-content-between align-items-center p-3"> 
+                    <div class="d-flex justify-content-between align-items-center p-3">
                         <h5 class="font-weight-bold">{{ __('messages.top_services') }}</h5>
                         <a href="{{ route('service.index') }}" class="float-right mr-1 btn btn-sm btn-primary">{{ __('messages.see_all') }}</a>
                     </div>
@@ -112,7 +112,7 @@
                             <tbody>
                                 @if(count($data['dashboard']['top_services_list']) > 0)
                                     @foreach($data['dashboard']['top_services_list'] as $services)
-                                        
+
                                         @php
                                             $image = getSingleMedia($services->service,'service_attachment', null);
                                             $file_extention = config('constant.IMAGE_EXTENTIONS');
@@ -130,12 +130,12 @@
                                                     </div>
                                                     <div class="data-content">
                                                         <div>
-                                                            <span class="font-weight-bold">{{optional($services->service)->name ?? '-'}}</span>                           
+                                                            <span class="font-weight-bold">{{optional($services->service)->name ?? '-'}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            
+
                                             <td class="pl-0 py-3">
                                                 {{getPriceFormat(optional($services->service)->price ?? 0)}}
                                             </td>
@@ -177,10 +177,10 @@
                                                 </div>
                                                 <div class="data-content">
                                                     <div>
-                                                        <span class="font-weight-bold">{{!empty($provider->display_name) ? $provider->display_name : '-'}}</span>                           
+                                                        <span class="font-weight-bold">{{!empty($provider->display_name) ? $provider->display_name : '-'}}</span>
                                                     </div>
                                                 </div>
-                                            </div>                                        
+                                            </div>
                                         </td>
                                         <td>
                                             <p class="mb-0  d-flex justify-content-start align-items-center">
@@ -198,7 +198,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card card-block card-height">
-                    <div class="d-flex justify-content-between align-items-center p-3"> 
+                    <div class="d-flex justify-content-between align-items-center p-3">
                         <h5 class="font-weight-bold">{{__('messages.dashboard_upcomming_booking')}}</h5>
                         <a href="{{ route('booking.index') }}" class="float-right mr-1 btn btn-sm btn-primary">{{ __('messages.see_all') }}</a>
                     </div>
@@ -264,10 +264,10 @@
                                                 </div>
                                                 <div class="data-content">
                                                     <div>
-                                                        <span class="font-weight-bold">{{!empty($customer->display_name) ? $customer->display_name : '-'}}</span>                           
+                                                        <span class="font-weight-bold">{{!empty($customer->display_name) ? $customer->display_name : '-'}}</span>
                                                     </div>
                                                 </div>
-                                            </div>                                        
+                                            </div>
                                         </td>
                                         <td>
                                             <p class="mb-0  d-flex justify-content-start align-items-center">
@@ -308,7 +308,7 @@
               // console.log(chart, w, e)
             }
           }
-        },        
+        },
         plotOptions: {
             bar: {
                 horizontal: false,
@@ -369,7 +369,7 @@
             'Mar',
             'Apr',
             'May',
-            'June', 
+            'June',
             'Jul',
             'Aug',
             'Sep',
@@ -380,7 +380,7 @@
           labels: {
             minHeight: 22,
             maxHeight: 22,
-            style: {              
+            style: {
               fontSize: '12px'
             }
           }

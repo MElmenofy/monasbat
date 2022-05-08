@@ -5,9 +5,9 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">{{ trans('Coupons') }}</h5>
+                            <h5 class="font-weight-bold">{{ trans('messages.coupon') }}</h5>
 {{--                            @if($auth_user->can('category add'))--}}
-                            <a href="{{ route('create_product_coupons') }}" class="float-right mr-1 btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i> Create Coupon</a>
+                            <a href="{{ route('create_product_coupons') }}" class="float-right mr-1 btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>{{ __('messages.add'). __('messages.coupon') }}</a>
 {{--                            @endif--}}
                         </div>
 
@@ -21,13 +21,13 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Code</th>
-                    <th>Price</th>
-                    <th>Type</th>
-                    <th>Type Coupon</th>
-                    <th>Created</th>
-                    <th>Used Count</th>
-                    <th class="text-center" style="width: 30px;">Actions</th>
+                    <th>{{ __('messages.code') }}</th>
+                    <th>{{ __('messages.price') }}</th>
+                    <th>{{ __('messages.type') }}</th>
+                    <th>{{ __('messages.type_coupon') }}</th>
+                    <th>{{ __('messages.created') }}</th>
+                    <th>{{ __('messages.used_count') }}</th>
+                    <th class="text-center" style="width: 30px;">{{ __('messages.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -73,7 +73,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="text-center">No Coupons found</td>
+                        <td colspan="6" class="text-center">{{ __('messages.no_coupons_found') }}</td>
                     </tr>
                 @endforelse
                 </tbody>

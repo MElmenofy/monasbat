@@ -34,7 +34,7 @@ class CouponProductController extends Controller
         $coupon = new CouponProduct();
         $coupon->code = $request->code;
         $coupon->price = $request->price;
-        $coupon->provider_id = $request->provider_id;
+//        $coupon->provider_id = $request->provider_id;
         $coupon->type = $request->type;
         $coupon->used_count = $request->used_count;
         $coupon->save();

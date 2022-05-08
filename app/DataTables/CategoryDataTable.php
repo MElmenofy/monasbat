@@ -74,12 +74,12 @@ class CategoryDataTable extends DataTable
                 ->searchable(false)
                 ->title(__('messages.no'))
                 ->orderable(false),
-            Column::make('name'),
-            Column::make('color'),
+            Column::make('name')->title(__('messages.name')),
+            Column::make('color')->title(__('messages.color')),
             Column::make('is_featured')
                 ->title(__('messages.featured')),
-            Column::make('status'),
-            Column::computed('action')
+            Column::make('status')->title(__('messages.status')),
+            Column::computed('action')->title(__('messages.actions'))
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)

@@ -5,7 +5,7 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">{{ $pageTitle ?? __('messages.list') }}</h5>
+                            <h5 class="font-weight-bold">{{ __('messages.add'). __('messages.provider_address') }}</h5>
                             @if($auth_user->can('provideraddress list'))
                                 <a href="{{ route('provideraddress.index') }}" class="float-right btn btn-sm btn-primary"><i class="fa fa-angle-double-left"></i> {{ __('messages.back') }}</a>
                             @endif
@@ -31,7 +31,7 @@
                                         ]) }}
                                     </div>
                                 @endif
-                                
+
                                 <div class="form-group col-md-4">
                                     {{ Form::label('latitude',__('messages.latitude').' <span class="text-danger">*</span>',['class'=>'form-control-label'], false ) }}
                                     {{ Form::number('latitude',old('latitude'), [ 'placeholder' => '00.0000','class' =>'form-control','required','step'=>'any']) }}
@@ -41,7 +41,7 @@
                                     {{ Form::label('longitude',__('messages.longitude').' <span class="text-danger">*</span>',['class'=>'form-control-label'], false ) }}
                                     {{ Form::number('longitude',old('longitude'), [ 'placeholder' => '00.0000','class' =>'form-control','required','step'=>'any']) }}
                                 </div>
-                                
+
                                 <div class="form-group col-md-4">
                                     {{ Form::label('status',__('messages.status').' <span class="text-danger">*</span>',['class'=>'form-control-label'],false) }}
                                     {{ Form::select('status',['1' => __('messages.active') , '0' => __('messages.inactive') ],old('status'),[ 'id' => 'role' ,'class' =>'form-control select2js','required']) }}
@@ -51,7 +51,7 @@
                                     {{ Form::label('address',__('messages.address').' <span class="text-danger">*</span>',['class'=>'form-control-label'],false) }}
                                     {{ Form::textarea('address', null, ['class'=>"form-control textarea" , 'required','rows'=>3  , 'placeholder'=> __('messages.address') ]) }}
                                     <small class="help-block with-errors text-danger"></small>
-                                </div>  
+                                </div>
                             </div>
                             {{ Form::submit( __('messages.save'), ['class'=>'btn btn-md btn-primary float-right']) }}
                         {{ Form::close() }}

@@ -26,6 +26,7 @@ class CreateBookingsTable extends Migration
             $table->double('discount')->nullable();
             $table->double('total_amount')->nullable();
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->text('reason')->nullable();
             $table->bigInteger('coupon_id')->nullable();
             $table->string('status')->nullable();

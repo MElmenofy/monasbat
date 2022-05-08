@@ -5,7 +5,7 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">Orders</h5>
+                            <h5 class="font-weight-bold">{{ __('messages.orders') }}</h5>
                         </div>
 
                     </div>
@@ -23,15 +23,15 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('ID') }}</th>
-                                    <th scope="col">Product Name</th>
-                                    <th class="table-web" scope="col">Order Date</th>
-                                    <th class="table-web" scope="col">{{ __('Quantity') }}</th>
-                                    <th class="table-web" scope="col">{{ __('Total Amount') }}</th>
-                                    <th class="table-web" scope="col">{{ __('Discount') }}</th>
-                                    <th scope="col">{{ __('Aria') }}</th>
-                                    <th scope="col">{{ __('Last status') }}</th>
-                                    <th scope="col">{{ __('Shipping Cost') }}</th>
-                                    <th scope="col">{{ __('Shipping Place') }}</th>
+                                    <th scope="col">{{ __('messages.product_name') }}</th>
+                                    <th class="table-web" scope="col">{{ __('messages.order_date') }}</th>
+                                    <th class="table-web" scope="col">{{ __('messages.quantity') }}</th>
+                                    <th class="table-web" scope="col">{{ __('messages.total_amount') }}</th>
+                                    <th class="table-web" scope="col">{{ __('messages.discount') }}</th>
+                                    <th scope="col">{{ __('messages.aria') }}</th>
+                                    <th scope="col">{{ __('messages.last_status') }}</th>
+                                    <th scope="col">{{ __('messages.shipping_cost') }}</th>
+                                    <th scope="col">{{ __('messages.shipping_place') }}</th>
 {{--                                    <th scope="col">{{ __('Actions') }}</th>--}}
                                 </tr>
                                 </thead>

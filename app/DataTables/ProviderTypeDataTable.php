@@ -51,7 +51,7 @@ class ProviderTypeDataTable extends DataTable
         }
         return $model->newQuery();
     }
-   
+
     /**
      * Get columns.
      *
@@ -64,10 +64,10 @@ class ProviderTypeDataTable extends DataTable
                   ->searchable(false)
                   ->title(__('messages.srno'))
                   ->orderable(false),
-              Column::make('name'),
-              Column::make('commission'),
-              Column::make('type'),
-              Column::computed('action')
+              Column::make('name')->title(__('messages.name')),
+              Column::make('commission')->title(__('messages.commission')),
+              Column::make('type')->title(__('messages.type')),
+              Column::computed('action')->title(__('messages.actions'))
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)

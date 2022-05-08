@@ -14,15 +14,15 @@ class AppSettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('app_settings')->delete();
-        
+
         \DB::table('app_settings')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
-                'site_name' => 'Handyman Service',
+                'site_name' => 'Monasbat',
                 'site_email' => NULL,
                 'site_logo' => NULL,
                 'site_favicon' => NULL,
@@ -32,13 +32,13 @@ class AppSettingsTableSeeder extends Seeder
                 'instagram_url' => NULL,
                 'twitter_url' => NULL,
                 'linkedin_url' => NULL,
-                'language_option' => '["nl","fr","it","pt","es","en"]',
+                'language_option' => '["en","ar"]',
                 'remember_token' => NULL,
                 'inquriy_email' => NULL,
                 'helpline_number' => NULL,
             ),
         ));
-        
-        
+
+
     }
 }

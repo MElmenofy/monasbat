@@ -97,13 +97,13 @@ class ProviderDataTable extends DataTable
                 ->title(__('messages.name')),
             Column::make('providertype_id')
                 ->title(__('messages.providertype')),
-            Column::make('contact_number'),
-            Column::make('address'),
+            Column::make('contact_number')->title(__('messages.contact_number')),
+            Column::make('address')->title(__('messages.address')),
 
-            Column::make('handyman'),
+            Column::make('handyman')->title(__('messages.handyman')),
 
-            Column::make('status'),
-            Column::computed('action')
+            Column::make('status')->title(__('messages.status')),
+            Column::computed('action')->title(__('messages.actions'))
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)

@@ -5,7 +5,7 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">Orders</h5>
+                            <h5 class="font-weight-bold">{{ __('messages.orders') }}</h5>
                         </div>
 
                     </div>
@@ -23,10 +23,10 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('ID') }}</th>
-                                    <th scope="col">Product Name</th>
-                                    <th class="table-web" scope="col">Order Date</th>
-                                    <th class="table-web" scope="col">{{ __('Number of orders') }}</th>
-                                    <th class="table-web" scope="col">{{ __('Price') }}</th>
+                                    <th scope="col">{{ __('messages.product_name') }}</th>
+                                    <th class="table-web" scope="col">{{ __('messages.order_date') }}</th>
+                                    <th class="table-web" scope="col">{{ __('messages.number_of_orders') }}</th>
+                                    <th class="table-web" scope="col">{{ __('messages.price') }}</th>
                                     <th scope="col">{{ __('Aria') }}</th>
                                     <th scope="col">{{ __('Last status') }}</th>
                                     <th scope="col">{{ __('Actions') }}</th>
@@ -113,5 +113,9 @@
                             </table>
                     @endif
         <!-- orders -->
+    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </x-master-layout>

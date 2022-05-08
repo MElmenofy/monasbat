@@ -72,9 +72,9 @@ class ProviderAddressDataTable extends DataTable
                 ->orderable(false),
             Column::make('provider_id')
             ->title(__('messages.provider')),
-            Column::make('address'),
-            Column::make('status'),
-            Column::computed('action')
+            Column::make('address')->title(__('messages.address')),
+            Column::make('status')->title(__('messages.status')),
+            Column::computed('action')->title(__('messages.actions'))
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)

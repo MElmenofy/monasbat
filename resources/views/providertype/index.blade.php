@@ -5,9 +5,9 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">{{ $pageTitle ?? trans('messages.list') }}</h5>
+                            <h5 class="font-weight-bold">{{ trans('messages.providertype') }}</h5>
                             @if($auth_user->can('providertype add'))
-                            <a href="{{ route('providertype.create') }}" class="float-right mr-1 btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i> {{ trans('messages.add_form_title',['form' => trans('messages.providertype')  ]) }}</a>
+                            <a href="{{ route('providertype.create') }}" class="float-right mr-1 btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i> {{ trans('messages.add') .trans('messages.providertype') }}</a>
                             @endif
                         </div>
                         {{ $dataTable->table(['class' => 'table  w-100'],false) }}

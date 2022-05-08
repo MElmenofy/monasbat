@@ -52,7 +52,7 @@ class CouponDataTable extends DataTable
         {
             $model = $model->withTrashed();
         }
-        
+
         return $model->newQuery();
     }
 
@@ -70,12 +70,12 @@ class CouponDataTable extends DataTable
                   ->title(__('messages.srno'))
                   ->orderable(false)
                   ->width(60),
-            Column::make('code'),
-            Column::make('discount_type'),
-            Column::make('discount'),
-            Column::make('expire_date'),
-            Column::make('status'),           
-            Column::computed('action')
+            Column::make('code')->title(__('messages.code')),
+            Column::make('discount_type')->title(__('messages.discount_type')),
+            Column::make('discount')->title(__('messages.discount')),
+            Column::make('expire_date')->title(__('messages.expire_date')),
+            Column::make('status')->title(__('messages.status')),
+            Column::computed('action')->title(__('messages.actions'))
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)

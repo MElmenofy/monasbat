@@ -5,7 +5,7 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">{{ $pageTitle ?? __('messages.list') }}</h5>
+                            <h5 class="font-weight-bold">{{ __('messages.add_new_provider') }}</h5>
                                 <a href="{{ route('provider.index') }}" class="float-right btn btn-sm btn-primary"><i class="fa fa-angle-double-left"></i> {{ __('messages.back') }}</a>
                             @if($auth_user->can('provider list'))
                             @endif
@@ -22,9 +22,9 @@
 
                             <div class="col-lg-12">
                                 <div class="form-group ">
-                                    <label for="inputState">Handyman</label>
+                                    <label for="inputState">{{ __('messages.handyman') }}</label>
                                     <select name="handyman_id" id="inputState" class="form-control">
-                                        <option selected>Choose...</option>
+                                        <option selected>{{ __('messages.choose') }}</option>
                                         @foreach($user_h as $user)
                                             <option value="{{ $user->id }}">{{ $user->first_name .' '. $user->last_name}}</option>
                                         @endforeach
@@ -65,7 +65,7 @@
                                 @endif
 
                                 <div class="form-group col-md-4">
-                                    {{ Form::label('providertype_id', __('messages.select_name',[ 'select' => __('messages.providertype') ]).' <span class="text-danger">*</span>',['class'=>'form-control-label'],false) }}
+                                    {{ Form::label('providertype_id',  __('messages.providertype').' <span class="text-danger">*</span>',['class'=>'form-control-label'],false) }}
                                     <br />
                                     {{ Form::select('providertype_id', [optional($providerdata->providertype)->id => optional($providerdata->providertype)->name], optional($providerdata->providertype)->id, [
                                         'class' => 'select2js form-group providertype',
@@ -76,7 +76,7 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    {{ Form::label('country_id', __('messages.select_name',[ 'select' => __('messages.country') ]),['class'=>'form-control-label'],false) }}
+                                    {{ Form::label('country_id', __('messages.country'),['class'=>'form-control-label'],false) }}
                                     <br />
                                     {{ Form::select('country_id', [optional($providerdata->country)->id => optional($providerdata->country)->name], optional($providerdata->country)->id, [
                                         'class' => 'select2js form-group country',
@@ -86,7 +86,7 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    {{ Form::label('state_id', __('messages.select_name',[ 'select' => __('messages.state') ]),['class'=>'form-control-label'],false) }}
+                                    {{ Form::label('state_id', __('messages.state'),['class'=>'form-control-label'],false) }}
                                     <br />
                                     {{ Form::select('state_id', [], [
                                         'class' => 'select2js form-group state_id',
@@ -95,7 +95,7 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    {{ Form::label('city_id', __('messages.select_name',[ 'select' => __('messages.city') ]),['class'=>'form-control-label'],false) }}
+                                    {{ Form::label('city_id', __('messages.city'),['class'=>'form-control-label'],false) }}
                                     <br />
                                     {{ Form::select('city_id', [], old('city_id'), [
                                         'class' => 'select2js form-group city_id',

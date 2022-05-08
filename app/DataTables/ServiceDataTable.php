@@ -43,7 +43,7 @@ class ServiceDataTable extends DataTable
             ->editColumn('price' , function ($service){
                 return getPriceFormat($service->price).'-'.ucFirst($service->type);
             })
-            
+
 
             ->editColumn('status' , function ($service){
                 $disabled = $service->deleted_at ? 'disabled': '';
@@ -89,15 +89,15 @@ class ServiceDataTable extends DataTable
                 ->searchable(false)
                 ->title(__('messages.srno'))
                 ->orderable(false),
-            Column::make('name'),
+            Column::make('name')->title(__('messages.name')),
             Column::make('provider_id')
                 ->title(__('messages.provider')),
             Column::make('category_id')
                 ->title(__('messages.category')),
-            Column::make('price'),
-            Column::make('discount'),
-            Column::make('status'),
-            Column::computed('action')
+            Column::make('price')->title(__('messages.price')),
+            Column::make('discount')->title(__('messages.discount')),
+            Column::make('status')->title(__('messages.status')),
+            Column::computed('action')->title(__('messages.actions'))
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)

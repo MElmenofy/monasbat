@@ -9,7 +9,7 @@
 
     @include('partials._head')
 </head>
-<body class="" id="app">
+<body class="" id="app" >
 @include('partials._body')
 </body>
 </html>

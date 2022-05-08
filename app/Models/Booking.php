@@ -10,7 +10,7 @@ class Booking extends Model
     use HasFactory,SoftDeletes;
     protected $table = 'bookings';
     protected $fillable = [
-        'customer_id', 'service_id', 'provider_id', 'date', 'start_at' , 'end_at' ,'amount' , 'discount','total_amount' , 'quantity', 'description' , 'coupon_id' , 'status' , 'payment_id' , 'reason' , 'address' ,'duration_diff' , 'booking_address_id','tax'
+        'customer_id', 'service_id', 'provider_id', 'date', 'start_at' , 'end_at' ,'amount' , 'discount','total_amount' , 'quantity', 'description' , 'coupon_id' , 'status' , 'payment_id' , 'reason' , 'address' ,'duration_diff' , 'booking_address_id','tax', 'image'
     ];
 
     protected $casts = [
@@ -57,7 +57,7 @@ class Booking extends Model
     public function handymanAdded(){
         return $this->hasMany(BookingHandymanMapping::class,'booking_id','id')->with(['handyman']);
     }
-    
+
     public function bookingActivity(){
         return $this->hasMany(BookingActivity::class,'booking_id','id');
     }
@@ -124,12 +124,12 @@ class Booking extends Model
             $row->service()->withTrashed()->restore();
             $row->provider()->withTrashed()->restore();
             $row->customer()->withTrashed()->restore();
-            $row->bookingActivity()->withTrashed()->restore(); 
+            $row->bookingActivity()->withTrashed()->restore();
             $row->couponAdded()->withTrashed()->restore();
             $row->payment()->withTrashed()->restore();
             $row->handymanAdded()->withTrashed()->restore();
             $row->bookingRating()->withTrashed()->restore();
-        });        
+        });
     }
 
     public function handymanByAddress(){

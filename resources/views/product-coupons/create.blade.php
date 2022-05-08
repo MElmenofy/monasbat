@@ -21,7 +21,7 @@
             <form action="{{ route('create_product_coupons') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="form-group">
                             <label for="code">Code</label>
                             <input type="text" name="code" value="{{ old('code') }}" class="form-control">
@@ -29,25 +29,25 @@
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="type_coupon">Type Coupon</label>
                         <select name="type_coupon" id="type_coupon" class="form-control">
                             <option disabled selected value> -- {{ __('Select an option') }} -- </option>
-                            <option value="order" {{ old('type_coupon') == 0 ? 'selected' : null }}>Order</option>
-                            <option value="category" {{ old('type_coupon') == 1 ? 'selected' : null }}>Categories</option>
-                            <option value="product" {{ old('type_coupon') == 1 ? 'selected' : null }}>Products</option>
+                            <option value="order" {{ old('type_coupon') == 'order' ? 'selected' : null }}>Order</option>
+                            <option value="category" {{ old('type_coupon') == 'category' ? 'selected' : null }}>Categories</option>
+                            <option value="product" {{ old('type_coupon') == 'product' ? 'selected' : null }}>Products</option>
                         </select>
                         @error('type_coupon')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
 
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="price">Price</label>
                         <input type="text" name="price" value="{{ old('price') }}" class="form-control">
                         @error('price')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="used_count">Used Count</label>
                         <input type="number" name="used_count" value="{{ old('used_count') }}" class="form-control">
                         @error('used_count')<span class="text-danger">{{ $message }}</span>@enderror
@@ -57,19 +57,19 @@
 
 
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="type">Type</label>
                         <select name="type" class="form-control">
                             <option disabled selected value> -- {{ __('Select an option') }} -- </option>
-                            <option value="0" {{ old('type') == 1 ? 'selected' : null }}>Fixed</option>
-                            <option id="percent" class="d-none" value="1" {{ old('type') == 0 ? 'selected' : null }}>Percentage</option>
+                            <option value="0" {{ old('type') == 0 ? 'selected' : null }}>Fixed</option>
+                            <option id="percent" class="d-none" value="1" {{ old('type') == 1 ? 'selected' : null }}>Percentage</option>
                         </select>
                         @error('type')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
 
                     <!-- for pro -->
                     @isset($products)
-                        <div class="col-3" id="product_id">
+                        <div class="col-3" id="products">
                             <label class="form-control-label" for="product_id">Products</label>
                             <select class="form-control select2" id="product_id" name="product_id[]" multiple>
                                 <option disabled selected value> -- {{ __('Select an option') }} -- </option>
@@ -84,7 +84,7 @@
 
                     <!-- for cat -->
                     @isset($categories)
-                    <div class="col-3" id="category_id">
+                    <div class="col-3" id="cats">
                             <label class="form-control-label" for="category_id">Categories</label>
                             <select class="form-control select2" id="category_id" name="category_id[]" multiple>
                                 <option disabled selected value> -- {{ __('Select an option') }} -- </option>
@@ -98,10 +98,6 @@
                     <!-- for cat -->
 
                 </div>
-
-
-
-
                 <div class="form-group pt-4">
                     <button type="submit" name="submit" class="btn btn-primary">Add Coupon</button>
                 </div>
@@ -113,21 +109,17 @@
     "use strict";
     $('#type_coupon').on('change', function() {
         if(this.value == 'order'){
-            $("#price_percentage").attr("required",false);
             $('#percent').removeClass('d-none');
-
-            // $('#form-group-price_fixed').show();
-            // $("#price_fixed").attr("required",true);
-            //
-            // $("#products").removeClass('d-none');
-        }else{
-            $('#form-group-price_fixed').hide();
-            $("#price_fixed").attr("required",false);
-
-            $('#form-group-price_percentage').show();
-            $("#price_percentage").attr("required",true);
-
-            $("#products").addClass('d-none');
+            $('#cats').addClass('d-none');
+            $('#products').addClass('d-none');
+        }else if(this.value == 'category'){
+            $('#percent').addClass('d-none');
+            $('#products').addClass('d-none');
+            $('#cats').removeClass('d-none');
+        }else if(this.value == 'product'){
+            $('#percent').addClass('d-none');
+            $('#cats').addClass('d-none');
+            $('#products').removeClass('d-none');
         }
     });
 </script>

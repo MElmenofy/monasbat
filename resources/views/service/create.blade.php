@@ -5,7 +5,7 @@
                 <div class="card card-block card-stretch">
                     <div class="card-body p-0">
                         <div class="d-flex justify-content-between align-items-center p-3">
-                            <h5 class="font-weight-bold">{{ $pageTitle ?? __('messages.list') }}</h5>
+                            <h5 class="font-weight-bold">{{ __('messages.add_new_service') }}</h5>
                                 <a href="{{ route('service.index') }}" class="float-right btn btn-sm btn-primary"><i class="fa fa-angle-double-left"></i> {{ __('messages.back') }}</a>
                             @if($auth_user->can('service list'))
                             @endif
@@ -24,7 +24,7 @@
                                     {{ Form::text('name',old('name'),['placeholder' => __('messages.name'),'class' =>'form-control','required']) }}
                                     <small class="help-block with-errors text-danger"></small>
                                 </div>
-                                
+
                                 <div class="form-group col-md-4">
                                     {{ Form::label('name', __('messages.select_name',[ 'select' => __('messages.category') ]).' <span class="text-danger">*</span>',['class'=>'form-control-label'],false) }}
                                     <br />
@@ -57,24 +57,24 @@
                                         'multiple' => 'multiple',
                                         'data-placeholder' => __('messages.select_name',[ 'select' => __('messages.provider_address') ]),
                                     ]) }}
-                                  
+
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     {{ Form::label('price',__('messages.price').' <span class="text-danger">*</span>',['class'=>'form-control-label'],false) }}
                                     {{ Form::number('price',null, [ 'min' => 0, 'step' => 'any' , 'placeholder' => __('messages.price'),'class' =>'form-control', 'required' ]) }}
                                 </div>
-                                
+
                                 <div class="form-group col-md-4">
                                     {{ Form::label('discount',__('messages.discount').' %', ['class' => 'form-control-label']) }}
                                     {{ Form::number('discount',null, [ 'min' => 0, 'step' => 'any' , 'placeholder' => __('messages.discount'),'class' =>'form-control']) }}
                                 </div>
-                                
+
                                 <div class="form-group col-md-4">
                                     {{ Form::label('type',__('messages.price_type').' <span class="text-danger">*</span>',['class'=>'form-control-label'],false) }}
                                     {{ Form::select('type',['fixed' => __('messages.fixed') , 'hourly' => __('messages.hourly') ],old('status'),[ 'class' =>'form-control select2js','required']) }}
                                 </div>
-                                
+
                                 <div class="form-group col-md-4">
                                     <label class="form-control-label" for="service_attachment">{{ __('messages.image') }} </label>
                                     <div class="custom-file">
@@ -93,7 +93,7 @@
                                     {{ Form::select('status',['1' => __('messages.active') , '0' => __('messages.inactive') ],old('status'),[ 'class' =>'form-control select2js','required']) }}
                                 </div>
                             </div>
-                                
+
                                 <div class="row service_attachment_div">
                                     <div class="col-md-12">
                                     @if(getMediaFileExit($servicedata, 'service_attachment'))
@@ -105,13 +105,13 @@
                                             <p class="ml-2"><b>{{ __('messages.attached_files') }}</b></p>
                                             <div class="ml-2 mt-3">
                                             <div class="row">
-                                        @foreach($attchments as $attchment ) 
-                                            <?php 
+                                        @foreach($attchments as $attchment )
+                                            <?php
                                                 $extention = in_array(strtolower(imageExtention($attchment->getFullUrl())),$file_extention);
                                             ?>
-                                            
+
                                             <div class="col-md-2 pr-10 text-center galary file-gallary-{{$servicedata->id}}"  data-gallery=".file-gallary-{{$servicedata->id}}" id="service_attachment_preview_{{$attchment->id}}">
-                                            @if($extention)   
+                                            @if($extention)
                                                 <a id="attachment_files" href="{{ $attchment->getFullUrl() }}" class="list-group-item-action attachment-list" target="_blank">
                                                     <img src="{{ $attchment->getFullUrl() }}" class="attachment-image" alt="">
                                                 </a>
@@ -144,8 +144,8 @@
                                     {{ Form::label('description',__('messages.description'), ['class' => 'form-control-label']) }}
                                     {{ Form::textarea('description', null, ['class'=>"form-control textarea" , 'rows'=>3  , 'placeholder'=> __('messages.description') ]) }}
                                 </div>
-                            
-                            
+
+
                                 <div class="form-group col-md-6">
                                     <div class="custom-control custom-checkbox custom-control-inline">
                                         {{ Form::checkbox('is_featured', $servicedata->is_featured, null, ['class' => 'custom-control-input' , 'id' => 'is_featured' ]) }}
@@ -211,7 +211,7 @@
                             }
                         })
                     })
-                }) 
+                })
                 function providerAddress(provider_id,provider_address_id=""){
                     var provider_address_route = "{{ route('ajax-list', [ 'type' => 'provider_address','provider_id' =>'']) }}"+provider_id;
                     provider_address_route = provider_address_route.replace('amp;','');

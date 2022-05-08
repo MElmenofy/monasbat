@@ -41,12 +41,12 @@ class BookingController extends Controller
 
         $bookingdata = Booking::find($id);
         $pageTitle = __('messages.update_form_title',['form'=> __('messages.booking')]);
-        
+
         if($bookingdata == null){
             $pageTitle = __('messages.add_button_form',['form' => __('messages.booking')]);
             $bookingdata = new Booking;
         }
-        
+
         return view('booking.create', compact('pageTitle' ,'bookingdata' ,'auth_user' ));
     }
 
@@ -57,12 +57,19 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {     
+    {
         $data = $request->all();
         if($request->id == null)
         {
             $data['status'] = 'pending';
-        }       
+        }
+
+//        if ($request->image) {
+//            $imageName = time() . rand(1, 1000) . '.' . $request->image->extension();
+//            $data['image'] = $imageName;
+//            $request->image->move(public_path('/uploads/services/'), $imageName);
+//        }
+
         $data['date'] = isset($request->date) ? date('Y-m-d H:i:s',strtotime($request->date)) : date('Y-m-d H:i:s');
         $service_data = Service::find($data['service_id']);
         $data['provider_id'] = $service_data->provider_id;
@@ -75,7 +82,7 @@ class BookingController extends Controller
                 ->whereHas('serviceAdded', function($coupon) use($service_data){
                     $coupon->where('service_id', $service_data->id );
                 })->first();
-            
+
             if( $coupons == null ) {
                 return comman_message_response( __('messages.invalid_coupon_code'),400);
             } else {
@@ -83,7 +90,7 @@ class BookingController extends Controller
             }
         }
         $result = Booking::updateOrCreate(['id' => $request->id], $data);
-       
+
         $activity_data = [
             'activity_type' => 'add_booking',
             'booking_id' => $result->id,
@@ -94,29 +101,29 @@ class BookingController extends Controller
 
         if($data['coupon_id'] != null) {
             $coupons = Coupon::find($data['coupon_id']);
-            
+
             $coupon_data = [
                 'booking_id'    => $result->id,
                 'code'          => $coupons->code,
                 'discount'      => $coupons->discount,
                 'discount_type' => $coupons->discount_type,
             ];
-            
+
             $result->couponAdded()->create($coupon_data);
         }
         if($request->has('booking_address_id') && $request->booking_address_id != null) {
             $booking_address_mapping = ProviderAddressMapping::find($data['booking_address_id']);
-            
+
             $booking_address_data = [
                 'booking_id'    => $result->id,
                 'address'          => $booking_address_mapping->address,
                 'latitude'      => $booking_address_mapping->latitude,
                 'longitude' => $booking_address_mapping->longitude,
             ];
-            
+
             $result->addressAdded()->create($booking_address_data);
         }
-        
+
 		if($result->wasRecentlyCreated){
 			$message = __('messages.save_form',[ 'form' => __('messages.booking') ] );
 		}
@@ -183,12 +190,12 @@ class BookingController extends Controller
             return  redirect()->back()->withErrors(trans('messages.demo_permission_denied'));
         }
         $data = $request->all();
-        
+
         $data['date'] = isset($request->date) ? date('Y-m-d H:i:s',strtotime($request->date)) : date('Y-m-d H:i:s');
         $data['start_at'] = isset($request->start_at) ? date('Y-m-d H:i:s',strtotime($request->start_at)) : null;
         $data['end_at'] = isset($request->end_at) ? date('Y-m-d H:i:s',strtotime($request->end_at)) : null;
 
-        
+
         $bookingdata = Booking::find($id);
         $paymentdata = Payment::where('booking_id',$id)->first();
         if($data['status'] === 'hold'){
@@ -226,7 +233,7 @@ class BookingController extends Controller
                 'booking_id' => $id,
                 'booking' => $bookingdata,
             ];
-    
+
             saveBookingActivity($activity_data);
         }
         if($bookingdata->payment_id != null){
@@ -267,13 +274,13 @@ class BookingController extends Controller
         }
         $booking = Booking::find($id);
         $msg = __('messages.msg_fail_to_delete',['item' => __('messages.booking')] );
-        
+
         if($booking != '') {
             Notification::whereJsonContains('data->id',$booking->id)->delete();
             $booking->delete();
             $msg = __('messages.msg_deleted',['name' => __('messages.booking')] );
         }
-        
+
         return redirect()->back()->withSuccess($msg);
     }
 
@@ -313,7 +320,7 @@ class BookingController extends Controller
 
         if(!empty($remove_notification_id)){
             $search = "id".'":'.$bookingdata->id;
-            
+
             Notification::whereIn('notifiable_id',$remove_notification_id)
                 ->whereJsonContains('data->id',$bookingdata->id)
                 ->delete();

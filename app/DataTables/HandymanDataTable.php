@@ -100,10 +100,10 @@ class HandymanDataTable extends DataTable
                 ->title(__('messages.name')),
 //            Column::make('provider_id')
 //                ->title(__('messages.provider')),
-            Column::make('contact_number'),
-            Column::make('address'),
-            Column::make('status'),
-            Column::computed('action')
+            Column::make('contact_number')->title(__('messages.contact_number')),
+            Column::make('address')->title(__('messages.address')),
+            Column::make('status')->title(__('messages.status')),
+            Column::computed('action')->title(__('messages.actions'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

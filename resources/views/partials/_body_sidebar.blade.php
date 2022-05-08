@@ -20,7 +20,7 @@
         // /product categories
 	// SHIPPING
 	if (auth()->user()->user_type == 'admin'){
-        $menu->add('<span>Shipping</span>', ['class' => '', 'route' => ['shippings.index']])
+        $menu->add('<span>'.__('messages.shipping').'</span>', ['class' => '', 'route' => ['shippings.index']])
             ->prepend('<i class="ri-shopping-basket-2-line"></i>')
             ->nickname('shipping')
             ->data('permission', 'category list')
@@ -28,17 +28,17 @@
         }
         // /SHIPPING
 	// TAX PRODUCTS
-	if (auth()->user()->user_type == 'admin'){
-        $menu->add('<span>Tax Products</span>', ['class' => '', 'route' => ['tax_products.index']])
-            ->prepend('<i class="ri-shopping-basket-2-line"></i>')
-            ->nickname('tax products')
-            ->data('permission', 'category list')
-            ->link->attr(["class" => ""]);
-        }
+//	if (auth()->user()->user_type == 'admin'){
+//        $menu->add('<span>Tax Products</span>', ['class' => '', 'route' => ['tax_products.index']])
+  //          ->prepend('<i class="ri-shopping-basket-2-line"></i>')
+    //        ->nickname('tax products')
+      //      ->data('permission', 'category list')
+        //    ->link->attr(["class" => ""]);
+        //}
         // /TAX PRODUCTS
 	// Orders
 	if (auth()->user()->user_type == 'provider'){
-        $menu->add('<span>Orders</span>', ['class' => '', 'route' => ['get-orders', auth()->user()->id]])
+        $menu->add('<span>'.__('messages.orders').'</span>', ['class' => '', 'route' => ['get-orders', auth()->user()->id]])
             ->prepend('<i class="ri-shopping-basket-2-line"></i>')
             ->nickname('products')
             ->data('Orders', 'category list')
@@ -48,7 +48,7 @@
 
 	// Orders -Admin
 	if (auth()->user()->user_type == 'admin'){
-        $menu->add('<span>Orders</span>', ['class' => '', 'route' => ['get-orders-admin']])
+        $menu->add('<span>'.__('messages.orders').'</span>', ['class' => '', 'route' => ['get-orders-admin']])
             ->prepend('<i class="ri-shopping-basket-2-line"></i>')
             ->nickname('Orders')
             ->data('permission', 'category list')
@@ -58,7 +58,7 @@
 
 	// product-coupon
 	if (auth()->user()->user_type == 'admin'){
-        $menu->add('<span>Product Coupons</span>', ['class' => '', 'route' => ['product_coupons']])
+        $menu->add('<span>'.__('messages.product_coupons').'</span>', ['class' => '', 'route' => ['product_coupons']])
             ->prepend('<i class="ri-shopping-basket-2-line"></i>')
             ->nickname('Coupons')
             ->data('permission', 'category list')
@@ -73,12 +73,12 @@
             ->link->attr(["class" => ""])
             ->href('#categories');
 
-            $menu->category->add('<span>'.__('messages.list_form_title',['form' => trans('messages.category') ]).'</span>', [ 'class' => 'sidebar-layout' , 'route' => ['category.index']])
+            $menu->category->add('<span>'.__( trans('messages.show')). trans('messages.category').'</span>', [ 'class' => 'sidebar-layout' , 'route' => ['category.index']])
                 ->prepend('<i class="ri-list-unordered"></i>')
                 ->data('permission', 'category list')
                 ->link->attr(array('class' => ''));
 
-            $menu->category->add('<span>'.__('messages.add_form_title',['form' => trans('messages.category')]).'</span>', array( 'class' => 'sidebar-layout', 'route' => 'category.create'))
+            $menu->category->add('<span>'.__( trans('messages.add')). trans('messages.category').'</span>', array( 'class' => 'sidebar-layout', 'route' => 'category.create'))
                 ->prepend('<i class="ri-add-box-line"></i>')
                 ->data('permission', 'category add')
                 ->link->attr(['class' => '']);
@@ -90,12 +90,12 @@
             ->link->attr(["class" => ""])
             ->href('#document');
 
-            $menu->document->add('<span>'.__('messages.list_form_title',['form' => trans('messages.document') ]).'</span>', [ 'class' => 'sidebar-layout' , 'route' => ['document.index']])
+            $menu->document->add('<span>'.__( trans('messages.show')). trans('messages.document') .'</span>', [ 'class' => 'sidebar-layout' , 'route' => ['document.index']])
                 ->prepend('<i class="ri-list-unordered"></i>')
                 ->data('permission', 'document list')
                 ->link->attr(array('class' => ''));
 
-            $menu->document->add('<span>'.__('messages.add_form_title',['form' => trans('messages.document')]).'</span>', array( 'class' => 'sidebar-layout', 'route' => 'document.create'))
+            $menu->document->add('<span>'.__( trans('messages.add')). trans('messages.document').'</span>', array( 'class' => 'sidebar-layout', 'route' => 'document.create'))
                 ->prepend('<i class="ri-add-box-line"></i>')
                 ->data('permission', 'document add')
                 ->link->attr(['class' => '']);
@@ -107,17 +107,17 @@
                 ->link->attr(["class" => ""])
                 ->href('#services');
 
-                $menu->service->add('<span>'.trans('messages.list_form_title',['form' => trans('messages.service')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'service.index'])
+                $menu->service->add('<span>'.__( trans('messages.show')). trans('messages.service').'</span>', ['class' => 'sidebar-layout' ,'route' => 'service.index'])
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->data('permission', 'service list')
                     ->link->attr(['class' => '']);
 
-                $menu->service->add('<span>'.trans('messages.add_form_title',['form' => trans('messages.service')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'service.create'])
+                $menu->service->add('<span>'.__( trans('messages.add')). trans('messages.service').'</span>', ['class' => 'sidebar-layout' ,'route' => 'service.create'])
                     ->data('permission', 'service add')
                     ->prepend('<i class="ri-add-box-line"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->service->add('<span>'.trans('messages.list_form_title',['form' => trans('messages.rating')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'ratingreview.index'])
+                $menu->service->add('<span>'.__( trans('messages.show')). trans('messages.rating').'</span>', ['class' => 'sidebar-layout' ,'route' => 'ratingreview.index'])
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->data('permission', 'service list')
                     ->link->attr(['class' => '']);
@@ -129,17 +129,17 @@
                 ->link->attr(["class" => ""])
                 ->href('#providers');
 
-                $menu->provider->add('<span>'.__('messages.list_form_title',['form' => __('messages.provider')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'provider.index'])
+                $menu->provider->add('<span>'.__( trans('messages.show')). __('messages.provider').'</span>', ['class' => 'sidebar-layout' ,'route' => 'provider.index'])
                     ->data('permission', 'provider list')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->provider->add('<span>'.__('messages.add_form_title',['form' => __('messages.provider')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'provider.create'])
+                $menu->provider->add('<span>'.__( trans('messages.add')). __('messages.provider').'</span>', ['class' => 'sidebar-layout' ,'route' => 'provider.create'])
                     ->data('permission', 'provider add')
                     ->prepend('<i class="ri-add-box-line"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->provider->add('<span>'.__('messages.pending_list_form_title',['form' => __('messages.provider')]).'</span>', ['class' => 'sidebar-layout' ,'route' => ['provider.pending','pending']])
+                $menu->provider->add('<span>'.__( trans('messages.pending')). __('messages.provider').'</span>', ['class' => 'sidebar-layout' ,'route' => ['provider.pending','pending']])
                     ->data('permission', 'pending provider')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
@@ -157,12 +157,12 @@
                 ->link->attr(["class" => ""])
                 ->href('#provideraddress');
 
-                $menu->provideraddress->add('<span>'.__('messages.list_form_title',['form' => __('messages.provider_address')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'provideraddress.index'])
+                $menu->provideraddress->add('<span>'.__( trans('messages.show')). __('messages.provider_address').'</span>', ['class' => 'sidebar-layout' ,'route' => 'provideraddress.index'])
                     ->data('permission', 'provideraddress list')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->provideraddress->add('<span>'.__('messages.add_form_title',['form' => __('messages.provider_address')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'provideraddress.create'])
+                $menu->provideraddress->add('<span>'.__( trans('messages.add')). __('messages.provider_address').'</span>', ['class' => 'sidebar-layout' ,'route' => 'provideraddress.create'])
                     ->data('permission', 'provideraddress add')
                     ->prepend('<i class="ri-add-box-line"></i>')
                     ->link->attr(['class' => '']);
@@ -174,12 +174,12 @@
                 ->link->attr(["class" => ""])
                 ->href('#providertypes');
 
-                $menu->providertype->add('<span>'.__('messages.list_form_title',['form' => __('messages.providertype')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'providertype.index'])
+                $menu->providertype->add('<span>'.__( trans('messages.show')). __('messages.providertype').'</span>', ['class' => 'sidebar-layout' ,'route' => 'providertype.index'])
                     ->data('permission', 'providertype list')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->providertype->add('<span>'.__('messages.add_form_title',['form' => __('messages.providertype')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'providertype.create'])
+                $menu->providertype->add('<span>'.__( trans('messages.add')). __('messages.providertype').'</span>', ['class' => 'sidebar-layout' ,'route' => 'providertype.create'])
                     ->data('permission', 'providertype add')
                     ->prepend('<i class="ri-add-box-line"></i>')
                     ->link->attr(['class' => '']);
@@ -191,12 +191,12 @@
                 ->link->attr(["class" => ""])
                 ->href('#providerdocument');
 
-                $menu->providerdocument->add('<span>'.__('messages.list_form_title',['form' => __('messages.providerdocument')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'providerdocument.index'])
+                $menu->providerdocument->add('<span>'.__( trans('messages.show')). __('messages.providerdocument').'</span>', ['class' => 'sidebar-layout' ,'route' => 'providerdocument.index'])
                     ->data('permission', 'providerdocument list')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->providerdocument->add('<span>'.__('messages.add_form_title',['form' => __('messages.providerdocument')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'providerdocument.create'])
+                $menu->providerdocument->add('<span>'.__( trans('messages.add')). __('messages.providerdocument').'</span>', ['class' => 'sidebar-layout' ,'route' => 'providerdocument.create'])
                     ->data('permission', 'providerdocument add')
                     ->prepend('<i class="ri-add-box-line"></i>')
                     ->link->attr(['class' => '']);
@@ -224,17 +224,17 @@
                 ->link->attr(["class" => ""])
                 ->href('#handymans');
 
-                $menu->handyman->add('<span>'.__('messages.list_form_title',['form' => __('messages.handyman')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'handyman.index'])
+                $menu->handyman->add('<span>'.__( trans('messages.show')). __('messages.handyman').'</span>', ['class' => 'sidebar-layout' ,'route' => 'handyman.index'])
                     ->data('permission', 'handyman list')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->handyman->add('<span>'.__('messages.add_form_title',['form' => __('messages.handyman')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'handyman.create'])
+                $menu->handyman->add('<span>'.__( trans('messages.add')). __('messages.handyman').'</span>', ['class' => 'sidebar-layout' ,'route' => 'handyman.create'])
                     ->data('permission', 'handyman add')
                     ->prepend('<i class="ri-add-box-line"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->handyman->add('<span>'.__('messages.pending_list_form_title',['form' => __('messages.handyman')]).'</span>', ['class' => 'sidebar-layout' ,'route' => ['handyman.pending','pending']])
+                $menu->handyman->add('<span>'.__( trans('messages.pending')). __('messages.handyman').'</span>', ['class' => 'sidebar-layout' ,'route' => ['handyman.pending','pending']])
                     ->data('permission', 'pending handyman')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
@@ -252,12 +252,12 @@
                 ->link->attr(["class" => ""])
                 ->href('#coupons');
 
-                $menu->coupon->add('<span>'.__('messages.list_form_title',['form' => __('messages.coupon')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'coupon.index'])
+                $menu->coupon->add('<span>'.__( trans('messages.show')). __('messages.coupon').'</span>', ['class' => 'sidebar-layout' ,'route' => 'coupon.index'])
                     ->data('permission', 'coupon list')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->coupon->add('<span>'.__('messages.add_form_title',['form' => __('messages.coupon')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'coupon.create'])
+                $menu->coupon->add('<span>'.__( trans('messages.add')). __('messages.coupon').'</span>', ['class' => 'sidebar-layout' ,'route' => 'coupon.create'])
                     ->data('permission', 'coupon add')
                     ->prepend('<i class="ri-add-box-line"></i>')
                     ->link->attr(['class' => '']);
@@ -269,7 +269,7 @@
                 ->link->attr(["class" => ""])
                 ->href('#payment');
 
-                $menu->payment->add('<span>'.trans('messages.list_form_title',['form' => trans('messages.payment')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'payment.index'])
+                $menu->payment->add('<span>'.__( trans('messages.show')). trans('messages.payment').'</span>', ['class' => 'sidebar-layout' ,'route' => 'payment.index'])
                     ->data('permission', 'payment list')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
@@ -281,12 +281,12 @@
                 ->link->attr(["class" => ""])
                 ->href('#sliders');
 
-                $menu->sliders->add('<span>'.__('messages.list_form_title',['form' => __('messages.slider')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'slider.index'])
+                $menu->sliders->add('<span>'.__( trans('messages.show')). __('messages.slider').'</span>', ['class' => 'sidebar-layout' ,'route' => 'slider.index'])
                     ->data('permission', 'slider list')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->sliders->add('<span>'.__('messages.add_form_title',['form' => __('messages.slider')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'slider.create'])
+                $menu->sliders->add('<span>'.__( trans('messages.add')). __('messages.slider').'</span>', ['class' => 'sidebar-layout' ,'route' => 'slider.create'])
                     ->data('permission', 'slider add')
                     ->prepend('<i class="ri-add-box-line"></i>')
                     ->link->attr(['class' => '']);
@@ -298,12 +298,12 @@
                 ->link->attr(["class" => ""])
                 ->href('#account_setting');
 
-                $menu->account_setting->add('<span>'.__('messages.list_form_title',['form' => __('messages.role')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'role.index'])
+                $menu->account_setting->add('<span>'.__( trans('messages.show')). __('messages.role').'</span>', ['class' => 'sidebar-layout' ,'route' => 'role.index'])
                     ->data('permission', 'role list')
                     ->prepend('<i class="ri-list-unordered"></i>')
                     ->link->attr(['class' => '']);
 
-                $menu->account_setting->add('<span>'.__('messages.list_form_title',['form' => __('messages.permission')]).'</span>', ['class' => 'sidebar-layout' ,'route' => 'permission.index'])
+                $menu->account_setting->add('<span>'.__( trans('messages.show')). __('messages.permission').'</span>', ['class' => 'sidebar-layout' ,'route' => 'permission.index'])
                     ->data('permission', 'permission list')
                     ->prepend('<i class="ri-add-box-line"></i>')
                     ->link->attr(['class' => '']);
